@@ -1,0 +1,40 @@
+% Vorlage fuer Thesen an der FFHS
+\documentclass{ffhsthesis}
+
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
+
+\usepackage{csquotes}
+\usepackage{biblatex}
+\addbibresource{references/references.bib}
+
+\usepackage{lipsum}% MWE only
+
+\begin{document}
+
+\raggedbottom
+\interlinepenalty=10000
+
+\include{chapters/00_title}
+\maketitle
+\include{chapters/13_toc}
+
+\startThesis % Befehl muss vor dem ersten chapter stehen (Seitennummerierung!)
+
+\include{chapters/20_introduction}
+\include{chapters/21_objective.tex}
+\include{chapters/22_literature_review.tex}
+\include{chapters/23_methodology.tex}
+\include{chapters/24_conclusion.tex}
+\include{chapters/25_milestones}
+
+\include{chapters/80_figures_tables.tex}
+\include{chapters/81_bibliography.tex}
+
+\newpage
+
+\begin{appendix}
+\include{chapters/90_independence_declaration}
+\end{appendix}
+
+\end{document}

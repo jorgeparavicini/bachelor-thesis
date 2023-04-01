@@ -1,0 +1,18 @@
+\chapter{Objective}
+
+This bachelor thesis aims to investigate whether using C\# source generators can enhance the runtime performance of C\# applications. In the fast-paced business world, enterprises strive to provide quick and efficient information to their users while also saving time on development. However, more time must be invested in development to achieve higher application speeds, and the technologies used become more complex. For example, game development often requires low-level languages such as C++ or Rust to meet performance demands. On the other hand, businesses that provide data through web applications prioritize time-to-market, thus opting for slower languages like C\# or Java that offer a faster development speed over C++.
+
+Balancing performance and development time is crucial, and one modern approach to enhance application development speed is reflection. Reflection allows a program to inspect and manipulate its own structure and behavior \cite{Draheim2005GenerativeC}, such as class and method definitions, at runtime. For example, it is widely used in modern web applications during the bootstrap process to identify endpoints. However, the issue with this approach is that it must be performed every time the application starts, which can be time-intensive as reflection is a feature by itself \cite{Dragan2005PerformanceComputing}. This is where C\# source generators come in, offering a solution by transforming the code with reflection into static code during compilation, eliminating the need for reflection at runtime.
+
+\section{Research Question}
+
+This research aims to comprehensively understand the potential of C\# source generators as a tool for improving application performance. By exploring the trade-offs between using reflection at runtime and generating static code at compile time, this research aims to provide insights into the future of software development and how developers can take advantage of new features in programming languages to build better, faster applications. The research questions guiding this investigation are:
+
+\begin{enumerate}[label=\textbf{RQ.\arabic*}:, leftmargin=*, labelindent=1em]
+    \item "How does using C\# source generators to turn reflected code into static code affect runtime performance, memory usage, and build time duration?"
+    \item "What are the key requirements, best practices, and important factors to consider when using C\# source generators for improving code performance and efficiency?"
+\end{enumerate}
+
+\section{Scope}
+
+This research's scope is limited to using C\# source generators to generate static code for reflected code. The research will focus on applications' runtime, build-time performance, and memory usage but will not consider other factors, such as code complexity. The research will also not cover other approaches to improving runtime performance, such as optimization techniques or alternative programming languages. Moreover, the scope will be limited to exploring the potential of C\# source generators to improve runtime performance and will not explore other potential uses for this feature. Finally, the study will be limited to applications written in C\# and will not consider applications written in other programming languages.
