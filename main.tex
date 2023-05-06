@@ -10,34 +10,40 @@
 
 \usepackage{lipsum}% MWE only
 
+\usepackage{todonotes}
+\usepackage{float}
+\usepackage[inkscapeformat=png]{svg}
+\usepackage{adjustbox}
+\usepackage[cache=false,outputdir=.]{minted}
+
 \begin{document}
 
 \raggedbottom
 \interlinepenalty=10000
 
 \include{chapters/00_title}
+\include{chapters/11_dedication}
 \maketitle
+\include{chapters/12_abstract}
 \include{chapters/13_toc}
+\include{chapters/14_abbreviations}
 
 \startThesis % Befehl muss vor dem ersten chapter stehen (Seitennummerierung!)
 
-\include{chapters/20_introduction.tex}
-\include{chapters/21_objective.tex}
-\include{chapters/22_literature_review.tex}
-\include{chapters/23_methods.tex}
-\include{chapters/30_implementation.tex}
-\include{chapters/40_results.tex}
-\include{chapters/41_discussion.tex}
-\include{chapters/42_case_study.tex}
-\include{chapters/43_conclusion.tex}
+\include{chapters/20_introduction}
+\include{chapters/21_literature_review}
+\include{chapters/22_methods}
+\include{chapters/23_results}
+\include{chapters/24_discussion}
+\include{chapters/25_conclusion}
 
-\include{chapters/80_figures_tables.tex}
-\include{chapters/81_bibliography.tex}
+\include{chapters/80_figures_tables}
+\include{chapters/81_bibliography}
 
 \newpage
 
 \begin{appendix}
-\include{chapters/90_independence_declaration}
+\include{chapters/90_declaration_of_originality}
 \end{appendix}
 
 \end{document}

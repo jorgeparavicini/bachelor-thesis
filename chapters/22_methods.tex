@@ -1,0 +1,113 @@
+\chapter{Methods and Materials}
+
+The methods section outlines the steps that will be taken to answer the research questions posed. In order to ensure that the results of this study are reliable and valid, a systematic and comprehensive approach has been taken. The methods consist of three main sections: (1) conducting a systematic literature review, (2) conducting a controlled experiment, and (3) analyzing the results and answering the research questions. Each of these sections is described in detail in the following sections.
+
+\section{Experimental Setup}
+
+The second part of the methods involves conducting a controlled experiment to measure the effect of using C\# source generators to generate static code for reflected code on runtime performance. To do this, we will create two applications: one that uses reflected code and one that uses C\# source generators.
+
+The first application will be a web application based on ASP.NET, as web applications are commonly built using C\# and are well-suited for measuring the performance impact of reflection. This application will have multiple functionalities and will make use of reflection to perform specific tasks.
+
+The second application will be a modified version of the first application. We will use C\# source generators to generate static code for the reflected code used in the first application. This will involve identifying the parts of the code that use reflection and then writing source generators that generate equivalent static code.
+
+The benchmarks will be conducted using BenchmarkDotNet, a powerful .NET library for benchmarking. The aim is to measure the performance of the applications that use reflected code and compare it to the performance of the same applications after modifying them to use C\# source generators to generate static code.
+
+The process will involve setting up a testing environment where the applications will be run and their performance measured. This environment should be as isolated as possible to prevent external factors from influencing the results. The benchmarking process will then be repeated multiple times to ensure consistent results.
+
+The performance of the applications will be measured in terms of key performance indicators such as execution time, memory usage, and CPU utilization. These indicators will be captured using BenchmarkDotNet, which will provide detailed reports on the performance of the applications. The results of the benchmarking process will then be analyzed to determine the impact of using C\# source generators on runtime performance.
+
+It is important to note that the benchmarking process should be well-planned and executed with care to ensure that the results are accurate and meaningful. Appropriate controls will be implemented to achieve this, such as using the same hardware and software configurations for all tests and ensuring that the tested applications represent real-world use cases.
+
+\subsection{ASP.NET Core App}
+
+\begin{itemize}
+    \item Description of the original ASP.NET Core App
+    \item Explanation of its feature and functionality
+\end{itemize}
+
+\subsection{Modified ASP.NET Core App}
+
+\begin{itemize}
+    \item Description of the modified ASP.NET Core App with static routes
+    \item Explanation of the changes made and their impact
+\end{itemize}
+
+\subsection{Hardware and Software Environment}
+
+\begin{itemize}
+    \item Overview of the hardware and software setup used for testing
+    \item Explanation of the testing environment's relevance to the study
+\end{itemize}
+
+\subsection{Test Scenarios}
+
+\begin{itemize}
+    \item Description of various test scenarios performed
+    \item Explanation of the purpose and expected outcomes of each test
+\end{itemize}
+
+\section{Performance Metrics}
+
+\begin{itemize}
+    \item Introduction to the performance metrics used in the study
+    \item Explanation of their importance and relevance
+\end{itemize}
+
+\subsection{Runtime Performance}
+
+\begin{itemize}
+    \item Description of the runtime performance metric
+    \item Explanation of how it is measured and analyzed
+\end{itemize}
+
+\subsection{Buildtime Duration}
+
+\begin{itemize}
+    \item Description of the buildtime duration metric
+    \item Explanation of how it is measured and analyzed
+\end{itemize}
+
+\section{Data Collection}
+
+\begin{itemize}
+    \item Overview of the data collection process
+    \item Description of the data collection methods used
+\end{itemize}
+
+\subsection{Performance Data Collection}
+
+\begin{itemize}
+    \item Explanation of how performance data is collected
+    \item Description of the tools and techniques used
+\end{itemize}
+
+\subsection{Buildtime Data Collection}
+
+\begin{itemize}
+    \item Explanation of how buildtime data is collected
+    \item Description of the tools and techniques used
+\end{itemize}
+
+\section{Data Analysis}
+
+To answer the first research question (RQ.1), we will thoroughly analyze the benchmark results we obtained from our experiment. By comparing the runtime performance of the applications that use reflected code and those that use C\# source generators, we will be able to determine the effect of source generators on runtime performance. The findings from the benchmark results will be compared with the relevant literature to validate our results.
+
+To answer the second research question (RQ.2), we will analyze the findings from the literature review to identify the best practices and any limitations or challenges associated with using C\# source generators. This analysis will also consider the insights gained from the prototype's development. By combining the literature findings and our practical experience, we will provide recommendations for best practices and for overcoming any limitations or challenges when using C\# source generators
+
+\subsection{Statistical Analysis}
+
+\begin{itemize}
+    \item Detail the statistical methods used to analyze the collected data
+\end{itemize}
+
+\subsection{Comparative Analysis}
+
+\begin{itemize}
+    \item Explain the process of comparing the performance and buildtime data of both applications
+\end{itemize}
+
+\section{Alternatives}
+
+Although the methods described above are the chosen approach for this thesis, alternative methods were considered but ultimately not selected. One alternative method that was considered was a survey-based study, which would have involved gathering data from software developers about their experiences using C\# source generators and reflection in software development. However, it was determined that this approach would not provide the level of detail and depth required to answer the research questions posed. The reason is that C\# source generators are a novel field. Therefore, there is a lack of experts. Furthermore, it is unlikely that any potential expert would have been able to formulate an objective opinion in such a short amount of time.
+
+Another alternative method was a case study approach, which would have involved analyzing the use of C\# source generators and reflection in a real-world software development project. However, this approach was not chosen due to the difficulty in finding an appropriate case study with the necessary level of detail and the potential limitations of generalizability to other projects.
