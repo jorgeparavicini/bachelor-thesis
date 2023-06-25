@@ -1,27 +1,11 @@
 \chapter{Conclusion}
 
-\begin{itemize}
-    \item Concise recap of the main findings and insights
-    \item Emphasis on the significance of the research for the field
-\end{itemize}
+The primary objective of this thesis was to investigate the impact of utilizing C\# source generators to convert reflective routing operations into static code in ASP.NET Core, specifically focusing on its effect on runtime performance, memory usage, and build duration. The research strived to establish the potential advantages and drawbacks of shifting from dynamic action discovery to static action discovery.
 
-\section{Summary of Findings}
+The key findings indicate that static action discovery can drastically reduce startup times and memory usage for ASP.NET Core applications. This change enhances the web server's overall performance, which benefits developers and businesses alike. Businesses may see reductions in operational costs due to improved server efficiency and resource usage. However, these gains come with the significant trade-off of longer build times, which currently presents a significant barrier to the widespread adoption of this approach.
 
-\begin{itemize}
-    \item Brief overview of the key results and their implications
-    \item Highlighting the most important insights from the research
-\end{itemize}
+In terms of practical implications, these findings can influence a developer's choice of action discovery techniques and potentially shape the design of future versions of ASP.NET Core or similar web development frameworks. While the extended build times are a limitation, they also highlight areas for further innovation and optimization within this approach.
 
-\section{Contributions to the Field}
+Future research can explore several exciting avenues, building upon the findings of this study. One possibility is to expand static action discovery to include property generation. This enhancement could enable static action discovery in web technologies like Blazor or Razor. Such an expansion of scope could lead to broader usage and further improvements in application performance. Moreover, it would be valuable to investigate how static action discovery holds up in more complex applications, specifically those with a complicated startup phase. Additionally, it would be interesting to explore methods to determine constructor arguments or properties at compile-time more deterministically, potentially leading to more scenarios allowing the pre-generation of final values. With this study demonstrating the effective use of source generators in removing the need for runtime reflection, there is potential for significant performance improvements across the entire .NET ecosystem.
 
-\begin{itemize}
-    \item Discussion of how the study advances the understanding of C\# source generators
-    \item Description of the study's impact on software development practices
-\end{itemize}
-
-\section{Final Thoughts and Future Directions}
-
-\begin{itemize}
-    \item Reflection on the broader implications of the research
-    \item Suggestions for potential areas of exploration in future researchs
-\end{itemize}
+Despite the limitations identified, such as testing in a minimal setup, potential discrepancies between static and dynamic approaches, and unaccounted variables affecting the startup time, the study successfully demonstrates the potential of C# source generators to optimize ASP.NET Core applications' performance.
