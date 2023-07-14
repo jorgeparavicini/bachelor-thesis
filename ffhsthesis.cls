@@ -150,3 +150,26 @@ Submitted to:
 \pagenumbering{roman}
 
 \newcommand{\startThesis}{\newpage\pagenumbering{arabic}\setcounter{page}{1}}
+
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
+
+\usepackage{csquotes}
+\usepackage{biblatex}
+\addbibresource{references/references.bib}
+
+\usepackage{lipsum}% MWE only
+
+\usepackage{todonotes}
+\usepackage{float}
+
+\usepackage{silence}
+\WarningFilter{hyphenat}{*******************************}
+
+\usepackage[htt]{hyphenat}
+
+\usepackage{geometry}
+
+\usepackage[toc,page]{appendix}
+
+\usepackage{hyperref}

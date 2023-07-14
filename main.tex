@@ -1,20 +1,9 @@
 % Vorlage fuer Thesen an der FFHS
 \documentclass{ffhsthesis}
 
-\usepackage[utf8]{inputenc}
-\usepackage{parskip}
 
-\usepackage{csquotes}
-\usepackage{biblatex}
-\addbibresource{references/references.bib}
 
-\usepackage{lipsum}% MWE only
-
-\usepackage{todonotes}
-\usepackage{float}
-\usepackage[inkscapeformat=png]{svg}
-\usepackage{adjustbox}
-\usepackage[cache=false,outputdir=.]{minted}
+\usepackage{}
 
 \begin{document}
 
@@ -22,7 +11,6 @@
 \interlinepenalty=10000
 
 \include{chapters/00_title}
-\include{chapters/11_dedication}
 \maketitle
 \include{chapters/12_abstract}
 \include{chapters/13_toc}
@@ -31,9 +19,9 @@
 \startThesis % Befehl muss vor dem ersten chapter stehen (Seitennummerierung!)
 
 \include{chapters/20_introduction}
+\include{chapters/21_background}
 \include{chapters/21_literature_review}
 \include{chapters/22_methods}
-\include{chapters/60_implementation}
 \include{chapters/23_results}
 \include{chapters/24_discussion}
 \include{chapters/25_conclusion}
@@ -43,8 +31,9 @@
 
 \newpage
 
-\begin{appendix}
+\begin{appendices}
+\include{chapters/60_implementation}
 \include{chapters/90_declaration_of_originality}
-\end{appendix}
+\end{appendices}
 
 \end{document}
