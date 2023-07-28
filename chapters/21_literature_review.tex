@@ -1,4 +1,4 @@
-\chapter{Relevant Academic Literature and Research}
+\chapter{Related work}
 
 Performance optimization is a crucial aspect of computer science, with numerous studies exploring its significance and potential areas of enhancement. This section provides a literature review on topics pivotal to this thesis - code generation and optimization, the impact of reflection on performance, the challenges in ASP.NET Core routing, and the current state of research regarding source generators. This exploration of the existing academic literature will identify gaps in recent research and pave the way for the original contributions of this bachelor's thesis.
 
@@ -24,7 +24,7 @@ Despite these performance considerations, reflection remains a powerful techniqu
 
 This dichotomy—reflection's widespread use and the associated performance penalties—highlights the necessity for alternative strategies. Pursuing mechanisms that provide reflection-like flexibility with more optimal performance characteristics is gaining importance.
 
-The study \cite{Beaumont2022} emphasizes that understanding and employing reflection techniques are valuable for developers at all stages of their careers, yet also cautions about potential performance implications. This reality underscores the need for performant alternatives to support the significant portion of NuGets relying on reflection, potentially enhancing their performance while retaining their functionality.
+Beaumont and Bastaki's study \cite{Beaumont2022} emphasizes that understanding and employing reflection techniques are valuable for developers at all stages of their careers, yet also cautions about potential performance implications. This reality underscores the need for performant alternatives to support the significant portion of NuGets relying on reflection, potentially enhancing their performance while retaining their functionality.
 
 \section{Performance Implications of ASP.NET Core Routing}
 
@@ -38,13 +38,13 @@ The action discovery process in ASP.NET Core, which utilizes reflection to assoc
 
 \section{Source Generators and Performance Improvements}
 
-In the relatively uncharted domain of source generators in C\#, Slimak's work \cite{Slimak2022} stands out. His thesis offers an in-depth guide to source generators. The thesis aims to help readers understand source generators, their purpose and use cases, and how they differentiate from other prevalent code generation options in C\#. The work further explores the use of source generators in enterprise applications and proposes a more complex framework that could generate standard boilerplate code, thus improving development efficiency. However, the thesis underscores source generators' current immaturity and challenges for integration into existing .NET tools, like Visual Studio and IntelliSense.
+In the uncharted domain of source generators in C\#, Slimak's work \cite{Slimak2022} stands out. His thesis offers an in-depth guide to source generators. The thesis aims to help readers understand source generators, their purpose and use cases, and how they differentiate from other prevalent code generation options in C\#. The work further explores the use of source generators in enterprise applications and proposes a more complex framework that could generate standard boilerplate code, thus improving development efficiency. However, the thesis underscores source generators' current immaturity and challenges for integration into existing .NET tools, like Visual Studio and IntelliSense.
 
 Supplementing the insights from Slimak's research, another study worth discussing is Franz's \cite{Franz2022}, entitled "Trends im Compilerbau." Though written in German, the paper provides a broader view of the trends shaping the field of compiler construction, with a particular focus on source generators and Just-In-Time Compilers. Using a dataset from the IEEE Xplore library, Franz emphasizes how active and vibrant the compiler construction research field remains, even with its considerable history. The emergence of new tools, like source generators, is sparking fresh inquiries. A key takeaway from Franz's study is the sustained focus on code optimizations. These efforts to enhance the output performance of compilers remain a primary concern in both practical and research contexts.
 
 Adding to these scholarly resources, the book "Introducing .NET 6" by Nico Vermeir \cite{Vermeir2022} offers a practical perspective. Though not a research paper, the book contains a chapter titled ".NET Compiler Platform" that explains source generators, among other topics. Vermeir describes how the .NET Compiler Platform, previously known as Project Roslyn, provides strength and flexibility to .NET. Additionally, the author discusses source generators, highlighting how they leverage Roslyn to generate code at compile time and incorporate that generated code into the compilation process.
 
-\section{Strengths, Weaknesses, and Gaps in the Existing Research}
+\section{Strengths, Weaknesses, and Gaps}
 
 The existing body of literature presents a wealth of information, with various studies investigating different aspects of code generation and optimization. This comprehensive coverage, spanning from early compiler optimizations \cite{Aho2007} to dynamic code generation techniques \cite{Kistler2003}, and even to the incorporation of machine learning \cite{Shreyas2021}, offers a solid foundation for understanding the significance of software optimization. Additionally, the studies delve into the performance implications of reflection and its extensive usage despite the associated overhead \cite{Tudose2013, Beaumont2022}.
 
@@ -56,11 +56,11 @@ Significantly, the startup phase of ASP.NET Core applications, potentially impac
 
 There's also a noted inconsistency regarding the efficacy of continuous optimization for dynamic code generation \cite{Kistler2003}, suggesting a need for more research to discern the specific conditions that maximize these techniques' benefits. Lastly, the immaturity of source generators and their integration challenges with existing .NET tools, as highlighted by Slimak \cite{Slimak2022}, underscores the need for more dedicated research.
 
-\section{Contribution of this thesis}
+\section{Contribution}
 
 This thesis contributes to the current body of knowledge in several ways, bridging existing gaps and enhancing our understanding of critical issues about code generation, optimization, and performance improvement in software development.
 
-Firstly, this research expands on the application of source generators in the .NET ecosystem, primarily focusing on performance optimization. Despite the promising potential of source generators, previous research indicates that this technology is currently in a state of relative immaturity \cite{Slimak2022}. This thesis contributes a systematic analysis of source generators, evaluating their strengths, weaknesses, and application areas in the context of software performance improvement.
+Firstly, this research expands on the application of source generators in the .NET ecosystem, primarily focusing on performance optimization. Despite the promising potential of source generators, previous research indicates that this technology is currently in a state of immaturity \cite{Slimak2022}. This thesis contributes a systematic analysis of source generators, evaluating their strengths, weaknesses, and application areas in the context of software performance improvement.
 
 Secondly, this thesis critically investigates the impact of ASP.NET Core's routing mechanisms on performance—a subject that has received limited attention in the existing literature. By thoroughly examining routing mechanisms and their relationship to startup time, the study uncovers new ways to enhance the performance of ASP.NET Core applications.
 

@@ -1,11 +1,11 @@
-\chapter{Approach for Design, Implementation, and Performance Evaluation of Static Action Discovery}
+\chapter{Methods for Design, Implementation, and Performance Evaluation of Static Action Discovery}
 
-This section outlines the methods and materials used to create, benchmark, and assess a new action discovery. Initially, we'll discuss the benchmark application that employs Microsoft's existing dynamic action discovery, serving as the basis for our study. Subsequently, we'll explore the modified application, highlighting its differences from the benchmark. The implementation details will be further addressed in the next chapter. Lastly, we'll define the testing metrics, scenarios, and environments used and explain how we ensured the reproducibility of our results.
+This section outlines the methods and materials used to create, benchmark, and assess a new action discovery. Initially, we discuss the benchmark application that employs Microsoft's existing dynamic action discovery, serving as the basis for our study. Subsequently, we explore the modified application, highlighting its differences from the benchmark. The implementation details will be further addressed in the next chapter. Lastly, we define the testing metrics, scenarios, and environments used and explain how we ensured the reproducibility of our results.
 
 
 \section{Characteristics of the Benchmark Application}
 
-This subsection delves into the specifics of the benchmark application used in this research, developed as an ASP.NET Core Web API. A key characteristic of this application, and indeed a cornerstone of its design, is the usage of reflection-based routing discovery. While widely employed, this mechanism inspects every class within the project and loaded assemblies. As the codebase grows, the efficiency of this approach decreases, presenting a challenge that our new implementation seeks to overcome.
+This subsection delves into the specifics of the \href{https://github.com/jorgeparavicini/aspnetcore/tree/feature/static-mvc/src/Mvc/samples}{benchmark application} \footnote{\url{https://github.com/jorgeparavicini/aspnetcore/tree/feature/static-mvc/src/Mvc/samples}} used in this research, developed as an ASP.NET Core Web API. A key characteristic of this application, and indeed a cornerstone of its design, is the usage of reflection-based routing discovery. While widely employed, this mechanism inspects every class within the project and loaded assemblies. As the codebase grows, the efficiency of this approach decreases, presenting a challenge that our new implementation seeks to overcome.
 
 The benchmark application is constructed with simplicity in mind, serving as a baseline for evaluating our novel routing implementation. Yet, despite its simplicity, it effectively mimics a small, medium, and enterprise application. We do this by varying the number of controllers present. Each controller varies in complexity, each with a different number of exposed actions and diverse routing attributes. This setup simulates scenarios commonly encountered in a real-world Web API.
 
@@ -17,7 +17,7 @@ Lastly, we've designed the benchmark setup with a focus on reproducibility. The 
 
 \section{Enhancing Action Discovery: A New Perspective}
 
-We must grasp how this approach reshapes the traditional application structure as we delve into the static action discovery. The following sections unravel this transformative process, exploring action discovery and its significance in routing. We then introduce the concept of static action discovery, providing a comprehensive view of its development. By journeying through these stages, we aim to provide a solid understanding of this new structure and its potential performance benefits.
+As we explore static action discovery, we'll see how it restructures traditional applications. The sections below delve into this transformative process, highlighting its impact on routing. We then introduce the concept of static action discovery, providing a comprehensive view of its development. By journeying through these stages, we aim to provide a solid understanding of this new structure and its potential performance benefits.
 
 \subsection{Understanding Action Discovery and Its Role in Routing}
 
@@ -51,7 +51,7 @@ Although this process is thorough, it can be resource-intensive for larger appli
 
 In our approach, we rely on incremental source generators. These tools come into play during the application's build process, producing additional source code that becomes part of the final executable. Crucially, source generators are designed for efficiency, executing only when a change in the output is detected. The nitty-gritty details of this process will be delved into in Appendix \ref{appendix:implementation}, which is devoted to the implementation details.
 
-Our source generator, during its operation, creates several key files. It spawns a service extension, which allows adding the required MVC framework without needing dynamic action discovery. Furthermore, a unique static action discovery service is created for every controller found within the project.
+Our \href{https://github.com/jorgeparavicini/aspnetcore/tree/feature/static-mvc/src/Mvc/Mvc.Generators/src}{source generator} \footnote{\url{https://github.com/jorgeparavicini/aspnetcore/tree/feature/static-mvc/src/Mvc/Mvc.Generators/src}}, during its operation, creates several key files. It spawns a service extension, which allows adding the required MVC framework without needing dynamic action discovery. Furthermore, a unique static action discovery service is created for every controller found within the project.
 
 Let's compare this to the conventional way of integrating the MVC framework into an ASP.NET Core application. This process is illustrated in Figure \ref{fig:dynamic-action-discovery}.
 
@@ -117,7 +117,7 @@ Figure \ref{fig:syntax-factory} depicts an example of SyntaxFactory's utilizatio
 
 \section{Performance Metrics and Evaluation}
 
-To answer our research question— "How does using C\# source generators to convert reflective action discovery into static code in ASP.NET Core impact startup performance, memory usage, and build time duration?"—we need an accurate way of benchmarking the dynamic and static action discovery test applications. The ultimate goal is to determine if static action discovery is a viable approach to reduce the startup time of ASP.NET Core applications and understand the impact of static action discovery on build time and memory usage. We anticipate a significant improvement in startup speed, even usage of memory, and a slight increase in build duration.
+To answer our research question— "How does using C\# source generators to convert reflective action discovery into static code in ASP.NET Core impact startup performance, memory usage, and build time duration?"—we need an accurate way of benchmarking the dynamic and static action discovery test applications. The ultimate goal is to determine if static action discovery is a viable approach to reduce the startup time of ASP.NET Core applications and understand the impact of static action discovery on build time and memory usage.
 
 \subsection{Choice of Metrics}
 
@@ -156,13 +156,13 @@ Finally, measuring build time is executed using the official MSBuild tool, Micro
 
 The measurement of build time also needs to be conducted multiple times to ensure the results are meaningful. The build results are cached after every build, which can drastically alter build times after the initial build. Therefore, we ensure that all artifacts related only to the project, not its dependencies, are cleared between builds. As the build time is designed to assess the impact on release workflow, we use the Release configuration for the builds. Since the compiler doesn't provide a build duration, we use the PowerShell \texttt{Measure-Command} tool to gauge the compiler's processing time.
 
-\subsection{Procedure and Methodology for Evaluating Startup Time, Build Time, and Memory Usage}
+\subsection{Evaluating Startup Time, Build Time, and Memory Usage}
 
-Assessing three metrics - startup time, build time, and memory usage during startup - requires careful planning to ensure the results are as meaningful as possible. In each trial, we either run a benchmark with BenchmarkDotNet 200 times or measure the project's compilation time 100 times. We chose these numbers to get an extensive enough dataset for trustworthy statistical analysis, which helps to lessen the effect of outliers and makes patterns easier to spot. In the case of the BenchmarkDotNet trials, we instruct it to measure the startup speed 200 times. However, the actual number can vary as it uses a \href{https://github.com/dotnet/BenchmarkDotNet/issues/1708}{heuristics} \footnote{\url{https://github.com/dotnet/BenchmarkDotNet/issues/1708}} to determine when to stop. If the benchmarking tool notices consistent results, it will terminate the trial early.
+Assessing three metrics - startup time, build time, and memory usage during startup. In each trial, we either run a benchmark with BenchmarkDotNet 200 times or measure the project's compilation time 100 times. We chose these numbers to get an extensive enough dataset for trustworthy statistical analysis, which helps to lessen the effect of outliers and makes patterns easier to spot. In the case of the BenchmarkDotNet trials, we instruct it to measure the startup speed 200 times. However, the actual number can vary as it uses a \href{https://github.com/dotnet/BenchmarkDotNet/issues/1708}{heuristics} \footnote{\url{https://github.com/dotnet/BenchmarkDotNet/issues/1708}} to determine when to stop. If the benchmarking tool notices consistent results, it will terminate the trial early.
 
 Starting an ASP.NET web server involves activating many services and executing different classes. Because of this, there are a lot of variables that can interfere with the results. These include Just-In-Time (JIT) compilation, CPUs warming up because modern CPUs can change their frequency based on workload to save energy, and CPU caching, where CPUs can store frequently used data in lower cache levels for faster access.
 
-We run each benchmark four times to minimize these variables' influence and ensure the results are meaningful. After these runs, we calculate statistics based on the combined results of all four runs. Since the build time isn't affected as much by these variables, as there is no JIT involved, we only run a single trial. The higher variance of the results is also why the benchmark trials contain twice the amount of runs as the compilation trials.
+To mitigate the influence of variables and ensure meaningful results, we conduct each benchmark in four separate trials. This number of trials provides a robust dataset, reducing the potential for outliers. Subsequently, we derive statistics from the combined results of these quadruplicate trials. In contrast, the build time, less impacted by such variables due to the absence of a JIT, is subjected to only a single trial. However, it's crucial to note that this trial incorporates 100 individual runs, ensuring substantive data and reducing variance, thus maintaining statistical significance.
 
 Trials are conducted using a specific setup to ensure consistent and reliable results. The machine used for these trials is rebooted after each run to ensure minimal background tasks are running, thus preventing any interference with the results. Each reboot clears potential residual tasks from the previous trial, providing a clean state for the next. This is instrumental in ensuring that no other applications interfere with the benchmarking process.
 
@@ -170,7 +170,7 @@ Table \ref{table:specifications} provides an overview of the software and hardwa
 
 Using the latest versions helps ensure that the project benefits from the most recent advancements and optimizations in the software, contributing to the relevance and applicability of the results. The trials can robustly assess the solution's performance across different scenarios by specifying and controlling these factors.
 
-\begin{table}[h!]
+\begin{table}[!ht]
 \centering
 \begin{tabular}{|c|c|}
 \hline
@@ -194,5 +194,3 @@ Mean values, error, and standard deviation are recorded for each of the 100 runs
 Trials are carried out on projects of varying sizes to assess the scalability of the solution and its performance under different scenarios. It starts with a small application of 100 Controllers to establish a baseline, followed by a medium-sized application of 1000 Controllers, and finally, an enterprise-scale application with 10,000 Controllers. It's worth noting that only the number of controllers varies for this analysis, while the number of non-controller classes remains constant. The proposed solution is expected to be more efficient in projects with more non-controller classes, as dynamic action discovery needs to analyze these classes on every startup. In contrast, static action discovery does not, as it generates no code for non-controller classes. However, the focus here remains on applications with varying controller sizes to isolate the impact of this single variable on the results.
 
 Once the trials are complete, static and dynamic action discovery benchmarks are compared to identify significant differences. This process is designed to generate raw data and uncover meaningful insights that can guide future improvements in the action discovery process.
-
-It is important to remember that every analysis has potential biases or limitations, which are considered carefully when interpreting the data. The benchmarks are conducted under specific conditions, and results may differ with different configurations or workloads. Any assumptions made during the analysis are transparently communicated. This ensures the most accurate interpretation and valuable conclusions.

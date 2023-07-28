@@ -1,12 +1,12 @@
 \chapter{Discussion}
 
-The following section provides an in-depth discussion of our research findings. We start with interpreting the results and evaluating the performance impacts of static action discovery in ASP.NET Core applications. Following this, we discuss the practical implications of our findings, both for developers and end users. Our study's outcomes are then compared with existing research to identify commonalities and disparities. We also reflect upon the limitations of our study, providing context for the interpretation and generalization of our results. Lastly, we outline potential avenues for future research that can further expand upon this study's groundwork.
+The following chapter provides a discussion of our findings. We start with interpreting the results and evaluating the performance impacts of static action discovery in ASP.NET Core applications. Following this, we discuss the practical implications of our findings, both for developers and end users. Our study's outcomes are then compared with existing research to identify commonalities and disparities. We also reflect upon the limitations of our study, providing context for the interpretation and generalization of our results. Lastly, we outline potential avenues for future research that can further expand upon this study's groundwork.
 
 \section{Unraveling the Impact of Static Action Discovery}
 
 This study set out to answer the question: How does using C\# source generators to convert reflective routing operations into static code in ASP.NET Core impact runtime performance, memory usage, and build time duration? The objective was to investigate the effect of employing a static approach to action discovery in ASP.NET Core applications on various aspects of performance, expecting that such an approach would lead to faster startup times, albeit with a likely increase in build times, while leaving memory usage relatively unchanged.
 
-The results of the study essentially validated these expectations. The startup duration for applications using the static action discovery was significantly faster, thanks to eliminating the expensive reflection process that analyzes the entire code base during startup. The reduction in startup duration underscores the potential for performance optimization offered by static action discovery.
+The results of the study essentially validated these expectations. The startup duration for applications using the static action discovery was faster, thanks to eliminating the expensive reflection process that analyzes the entire code base during startup. The reduction in startup duration underscores the potential for performance optimization offered by static action discovery.
 
 Notably, while the relative improvement in startup duration was substantial for smaller applications, the absolute difference in startup times was less significant. This reflects the general trend that larger applications stand to gain more from switching to static action discovery because the overhead of reflection increases with the complexity and size of the codebase. Although the relative speed-up could be impressive for smaller applications, the actual time saved may be small. This suggests that the decision to adopt static action discovery may depend on the scale and requirements of individual applications.
 
@@ -18,9 +18,9 @@ The static action discovery approach displayed a significant advantage regarding
 
 \section{Implications for Developers and Future of ASP.NET Core}
 
-From a developer's standpoint, these results could influence their choice of action discovery techniques in ASP.NET Core applications. The static action discovery approach offers clear benefits for larger applications where startup times are critical, and resources might be constrained.
+From a developer's standpoint, these results could influence their choice of action discovery techniques in ASP.NET Core applications. The static action discovery approach offers clear benefits for larger applications where startup times are critical and resources might be constrained.
 
-End users, too, stand to benefit from the improved startup times and lower memory usage brought about by static action discovery. In environments where resources are limited or the server needs to be frequently restarted, these performance improvements can contribute to a more efficient and responsive user experience.
+End users, too, stand to benefit from the improved startup times and lower memory usage brought about by static action discovery. In environments where resources are limited, or the server needs to be frequently restarted, these performance improvements can contribute to a more efficient and responsive user experience.
 
 The study highlights a significant trade-off between runtime performance improvements (faster startup times, lower memory usage) and increased build times. This balance could factor into decision-making in different development scenarios. For instance, in a development environment, quicker build times could be crucial for productivity, whereas, in a production setting, faster startup times and reduced memory usage could be more critical for performance and cost efficiency.
 
@@ -36,29 +36,20 @@ Overall, these findings provide compelling evidence of the potential of static a
 This study's findings align with previous research conducted in this domain. Tudose et al.'s research, which examines the impact of reflection on runtime performance, came to similar conclusions about the significant effect of reflection-based operations \cite{Tudose2013}. These findings reaffirm the potential of static approaches in optimizing code performance and reducing runtime costs.
 
 Furthermore, this study extends upon the observations made by Aho et al. \cite{Aho2007}, Kistler and Franz \cite{Kistler2003}, and Madhav et al. 
-\cite{Shreyas2021}. These scholars discussed various strategies for optimizing code performance, emphasizing the need for innovation in this area. The use of source generators, a relatively novel concept, was demonstrated in this study to be an effective tool for achieving such performance improvements in the context of ASP.NET Core.
+\cite{Shreyas2021}. These scholars discussed various strategies for optimizing code performance, emphasizing the need for innovation in this area. The use of source generators, a novel concept, was demonstrated in this study to be an effective tool for achieving such performance improvements in the context of ASP.NET Core.
 
 With that said, the research findings in this study point towards the potential of C\# source generators as a powerful tool for enhancing performance in ASP.NET Core applications. However, it is important to continue investigating ways to mitigate the increased build time overhead introduced by source generators before this approach can be widely adopted.
 
 
 \section{Limitations of Static Action Discovery}
 
-This research has some significant limitations to keep in mind. First, our tests were done in a basic ASP.NET Core setup to isolate the changes made. This provided precise results about how our new static action discovery compares to the existing dynamic method. However, it might not consider all possible interactions or conflicts impacting performance in more complex applications.
+This research has some limitations to keep in mind. First, our tests were done in a basic ASP.NET Core setup to isolate the changes made. This provided precise results about how our new static action discovery compares to the existing dynamic method. However, it might not consider all possible interactions or conflicts impacting performance in more complex applications.
 
 Second, while we did test with different application sizes, we didn't test how the new approach handles applications that increase in size without adding more controllers. This is a common scenario in many web applications, and additional testing would be needed to understand how our approach works in these conditions fully.
 
 Third, although we took steps to control for outside factors, it's always possible that unknown background tasks could have influenced the measurements. Also, all tests were run on the same machine using the same .NET version. While we don't expect different hardware to impact the overall trends observed significantly, the absolute values might vary.
 
-Lastly, the current version of the static action discovery doesn't include property discovery, which is a feature supported by the dynamic approach. We tried to account for this during testing by only using controllers that both methods fully support. However, the dynamic process analyzes and generates default properties on all classes, something our method doesn't currently do. This means our new approach doesn't support all the dynamic method's features, which could affect its performance in applications that use these features.
+Fourth, the current version of the static action discovery doesn't include property discovery, which is a feature supported by the dynamic approach. We tried to account for this during testing by only using controllers that both methods fully support. However, the dynamic process analyzes and generates default properties on all classes, something our method doesn't currently do. This means our new approach doesn't support all the dynamic method's features, which could affect its performance in applications that use these features.
 
-\section{Future Research}
+Lastly, it is important to remember that every analysis has potential biases or limitations, which are considered carefully when interpreting the data. The benchmarks are conducted under specific conditions, and results may differ with different configurations or workloads. Any assumptions made during the analysis are transparently communicated. This ensures the most accurate interpretation and valuable conclusions.
 
-The results of this study pave the way for several exciting avenues of exploration in future research. Our work was focused on static action discovery in web APIs, specifically those that do not rely heavily on properties. An exciting progression would be to extend this investigation to include web applications, such as Blazor or Razor, which require properties for their bindings. Understanding how our static action discovery approach fares in these scenarios would be insightful.
-
-Additionally, our study implemented the action discovery using incremental source generators, the successor to the traditional, now deprecated, source generators. It would be intriguing to assess the impact of the action discovery if it had been implemented using these older source generators.
-
-Moreover, our test environment was carefully controlled, focusing on minimal setups to isolate the changes. An interesting line of inquiry would be to investigate how the static action discovery holds up in a more complex application environment with a more complicated startup phase.
-
-On the technical front, an area of potential exploration is the challenge of deterministically finding out the values of constructor arguments or properties at compile time. This is often a difficult task, and improvements in this area could potentially eliminate the need for evaluating these properties and arguments at runtime, which we're trying to avoid. While our approach already eliminates the need for reflection, this is an area where we could push the performance benefits even further.
-
-Finally, our research has also opened the doors for a broader exploration into the potential of source generators. We've found that source generators have immense potential for reducing code complexity, particularly in codes that use reflection. A study by Beaumont and Bastaki \cite{Beaumont2022} revealed that around 15\% of NuGet packages use reflection. Considering this, source generators could significantly contribute to reducing the need for reflection and potentially enhance the performance of the entire .NET Ecosystem.

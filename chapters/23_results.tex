@@ -2,9 +2,7 @@
 
 The results section delves into the performance differences between static and dynamic action discovery methods across three key aspects: startup time, build duration, and memory usage during startup. Each subsequent section provides specific findings, illustrating how varying the number of controllers impacts these metrics and revealing the comparative performance implications of the two action discovery approaches.
 
-\section{Impact on Startup Time}
-
-The assessment of startup time under varying conditions is an integral component of this study. It is important to note that each graph depicts four runs of a benchmark, with each run consisting of 200 iterations. Here, an iteration signifies the duration it takes to start the web server and for it to be ready to process requests.
+\section{Startup Time}
 
 Figure \ref{fig:dynamic-startup-100} illustrates the startup time for a small application comprising 100 controllers using the existing dynamic action discovery. An observable initial slowdown is noted, with the first run beginning around 21ms and gradually decreasing to around 18.5ms over 200 iterations. However, subsequent runs display a more consistent startup duration ranging between 10 and 11 milliseconds. Overall, the mean startup time of the application employing dynamic action discovery averages 12.55 milliseconds, with an error margin of 0.47 and a standard deviation of 3.95.
 
@@ -24,7 +22,7 @@ In contrast, Figure \ref{fig:static-startup-100} presents the same application e
 \label{fig:static-startup-100}
 \end{figure}
 
-Expanding the application size to include 1,000 controllers, the startup time under dynamic action discovery (Figure \ref{fig:dynamic-startup-1000}) appears relatively turbulent at the beginning of each benchmark. However, the measurements eventually stabilize around 86 milliseconds. The mean startup time for this application under dynamic action discovery is 86.02 milliseconds, with an error margin of 0.14 and a standard deviation of 1.16.
+Expanding the application size to include 1,000 controllers, the startup time under dynamic action discovery (Figure \ref{fig:dynamic-startup-1000}) appears turbulent at the beginning of each benchmark. However, the measurements eventually stabilize around 86 milliseconds. The mean startup time for this application under dynamic action discovery is 86.02 milliseconds, with an error margin of 0.14 and a standard deviation of 1.16.
 
 \begin{figure}[H]
 \centering
@@ -69,15 +67,13 @@ Furthermore, Figure \ref{fig:startup-time-results} visualizes the mean startup t
 \label{fig:startup-time-results}
 \end{figure}
 
-\section{Impact on Build Duration}
-
-The duration of the build process is another significant metric in this analysis. The data reveals that the build time increases exponentially with the number of controllers present in the application.
+\section{Build Duration}
 
 For an application with 100 controllers utilizing static action discovery, the mean build time was recorded as 1888 milliseconds. Across the 100 measurements, this mean time demonstrated an error of 135 and a standard deviation of 398. By comparison, the same application using dynamic action discovery averaged a shorter build time of 1566 milliseconds, with an error of 24 and a standard deviation of 71.
 
 Escalating to an application size of 1,000 controllers, the mean build time for the static action discovery variant was 4162 milliseconds. This result was associated with an error of 102 and a standard deviation of 302. On the other hand, the dynamic action discovery method posted an average build time of 1779 milliseconds, with an error of 28 and a standard deviation of 81.
 
-Finally, the largest application with 10,000 controllers was analyzed. Here, the static action discovery approach resulted in an average build time of 47276 milliseconds, accompanied by an error of 881 and a standard deviation of 2599. In contrast, employing dynamic action discovery resulted in a significantly lower mean build time of 5843 milliseconds, along with an error of 66 and a standard deviation of 196.
+Finally, the largest application with 10,000 controllers was analyzed. Here, the static action discovery approach resulted in an average build time of 47276 milliseconds, accompanied by an error of 881 and a standard deviation of 2599. In contrast, employing dynamic action discovery resulted in a lower mean build time of 5843 milliseconds, along with an error of 66 and a standard deviation of 196.
 
 Figure \ref{fig:build-time-results} visually represents these results as a bar chart, categorized by the number of controllers in each application. Within each group, the static action discovery value is displayed on the right, while the dynamic action discovery value is presented on the left. This arrangement allows for an intuitive comparison of build times between the two methods across applications of varying sizes.
 
@@ -88,9 +84,9 @@ Figure \ref{fig:build-time-results} visually represents these results as a bar c
 \label{fig:build-time-results}
 \end{figure}
 
-\section{Impact on Memory Usage during Startup}
+\section{Memory Usage during Startup}
 
-The evaluation of memory usage during startup presents additional valuable insights. Unlike the other metrics, memory usage measurements do not have an error or standard deviation, as the execution is deterministic, and the values remain consistent throughout each measurement.
+Unlike the other metrics, memory usage measurements do not have an error or standard deviation, as the execution is deterministic, and the values remain consistent throughout each measurement.
 
 The following Figure \ref{fig:memory-usage-results} provides a comprehensive overview of memory usage across each application, differentiated by the static and dynamic action discovery methods.
 
